@@ -11,7 +11,7 @@ public class Business implements Serializable
 
     @SerializedName("rating")
     @Expose
-    private Integer rating;
+    private Double rating;
     @SerializedName("price")
     @Expose
     private String price;
@@ -81,7 +81,7 @@ public class Business implements Serializable
      * @param id
      * @param categories
      */
-    public Business(Integer rating, String price, String phone, String id, String alias, Boolean isClosed, List<Category> categories, Integer reviewCount, String name, String url, Coordinates coordinates, String imageUrl, Location location, Double distance, List<String> transactions) {
+    public Business(Double rating, String price, String phone, String id, String alias, Boolean isClosed, List<Category> categories, Integer reviewCount, String name, String url, Coordinates coordinates, String imageUrl, Location location, Double distance, List<String> transactions) {
         super();
         this.rating = rating;
         this.price = price;
@@ -100,11 +100,11 @@ public class Business implements Serializable
         this.transactions = transactions;
     }
 
-    public Integer getRating() {
+    public Double getRating() {
         return rating;
     }
 
-    public void setRating(Integer rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
     }
 
