@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -20,9 +20,11 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
+        android:fontFamily="@font/roboto_bold"
         android:text="My Restaurants"
         android:textColor="@color/colorTextIcons"
-        android:textSize="40sp" />
+        android:textSize="50sp"
+        android:textStyle="bold"/>
 
     <EditText
         android:id="@+id/locationEditText"
