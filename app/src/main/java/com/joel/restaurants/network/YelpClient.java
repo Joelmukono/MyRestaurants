@@ -1,4 +1,4 @@
-package com.joel.restaurants;
+package com.joel.restaurants.network;
 
 import java.io.IOException;
 

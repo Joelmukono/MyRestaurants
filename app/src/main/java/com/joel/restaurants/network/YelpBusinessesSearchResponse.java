@@ -1,10 +1,12 @@
 
-package com.joel.restaurants;
+package com.joel.restaurants.network;
 
 import java.io.Serializable;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.joel.restaurants.models.Business;
+import com.joel.restaurants.models.Region;
 
 public class YelpBusinessesSearchResponse implements Serializable
 {

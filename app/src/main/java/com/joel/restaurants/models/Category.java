@@ -1,5 +1,5 @@
 
-package com.joel.restaurants;
+package com.joel.restaurants.models;
 
 import java.io.Serializable;
 import com.google.gson.annotations.Expose;

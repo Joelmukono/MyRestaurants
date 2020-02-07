@@ -1,4 +1,6 @@
-package com.joel.restaurants;
+package com.joel.restaurants.network;
+
+import com.joel.restaurants.network.YelpBusinessesSearchResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
