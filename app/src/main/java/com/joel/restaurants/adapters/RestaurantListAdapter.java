@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.joel.restaurants.R;
 import com.joel.restaurants.models.Business;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -58,7 +59,8 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
             mContext = itemView.getContext();
         }
 
-        public void bindRestaurant(Business restaurant){ //
+        public void bindRestaurant(Business restaurant){ // sets data to respective layout elements
+            Picasso.get().load(restaurant.getImageUrl()).into(mRestaurantImageView);//sets image to image view
             mNameTextView.setText(restaurant.getName());
             mCategoryTextView.setText(restaurant.getCategories().get(0).getTitle());
             mRatingTextView.setText("Rating: "+ restaurant.getRating() + "/5");
