@@ -5,7 +5,11 @@ import java.io.Serializable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Location implements Serializable
+import org.parceler.Parcel;
+
+@Parcel(Parcel.Serialization.BEAN)
+
+public class Location
 {
 
     @SerializedName("city")
@@ -113,6 +117,12 @@ public class Location implements Serializable
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+    }
+
+    @Override
+    public String toString(){
+        return String.format("%s, %s, %s %s", this.address1, this.city, this.state, this.zipCode);
+
     }
 
 }

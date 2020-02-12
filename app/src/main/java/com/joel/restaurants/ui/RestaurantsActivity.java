@@ -5,7 +5,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.joel.restaurants.Constants;
 import com.joel.restaurants.adapters.RestaurantListAdapter;
 import com.joel.restaurants.models.Business;
 import com.joel.restaurants.models.Category;
@@ -33,6 +36,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RestaurantsActivity extends AppCompatActivity {
+
+    private SharedPreferences mSharedPreferences;
+    private String mRecentAddress;
 
     private static final String TAG = RestaurantsActivity.class.getSimpleName();
 
@@ -56,6 +62,8 @@ public class RestaurantsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restaurants);
 
         ButterKnife.bind(this);
+
+
 
 //        MyRestaurantsArrayAdapter adapter = new MyRestaurantsArrayAdapter(this, android.R.layout.simple_list_item_1, restaurants, cuisines);//creating a new array adapter takes arguments curret context, layout for rep in list item display,and array of items to show
 //        mListView.setAdapter(adapter);//takes individual items from arraylist and displaying them in mListView
@@ -103,6 +111,12 @@ public class RestaurantsActivity extends AppCompatActivity {
 
             }
         });
+
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY,null);
+        if (mRecentAddress !=null){
+            client.getRestaurants(mRecentAddress, "restaurants");
+        }
     }
 
     private void showFailureMessage(){

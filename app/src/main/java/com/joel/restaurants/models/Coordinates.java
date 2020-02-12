@@ -5,7 +5,11 @@ import java.io.Serializable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Coordinates implements Serializable
+import org.parceler.Parcel;
+
+@Parcel(Parcel.Serialization.BEAN)
+
+public class Coordinates
 {
 
     @SerializedName("latitude")
