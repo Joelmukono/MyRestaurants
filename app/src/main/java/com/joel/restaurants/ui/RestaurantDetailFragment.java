@@ -10,11 +10,16 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.joel.restaurants.Constants;
 import com.joel.restaurants.models.Business;
 import com.joel.restaurants.models.Category;
 import com.joel.restaurants.models.Coordinates;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -72,14 +77,14 @@ public class RestaurantDetailFragment extends Fragment implements View.OnClickLi
         ButterKnife.bind(this,view);
         Picasso.get().load(mRestaurant.getImageUrl()).into(mImageLabel);
 
-        List<String> categories = new ArrayList<>();
+//        List<String> categories = new ArrayList<>();
 
-        for(Category category: mRestaurant.getCategories()){
-            categories.add(category.getTitle());
-        }
+//        for(Category category: mRestaurant.getCategories()){
+//            categories.add(category.getTitle());
+//        }
 
         mNameLabel.setText(mRestaurant.getName());
-        mCategoriesLabel.setText(android.text.TextUtils.join(", ", categories));
+        mCategoriesLabel.setText(android.text.TextUtils.join(", ", mRestaurant.getCategories()));
         mRatingLabel.setText(Double.toString(mRestaurant.getRating()) + "/5");
         mPhoneLabel.setText(mRestaurant.getPhone());
         mAddressLabel.setText(mRestaurant.getLocation().toString());
@@ -87,6 +92,8 @@ public class RestaurantDetailFragment extends Fragment implements View.OnClickLi
         mWebsiteLabel.setOnClickListener(this);
         mPhoneLabel.setOnClickListener(this);
         mAddressLabel.setOnClickListener(this);
+
+        mSaveRestaurantButton.setOnClickListener(this);
         return view;
     }
 
@@ -110,6 +117,16 @@ public class RestaurantDetailFragment extends Fragment implements View.OnClickLi
                             + "?q=(" + mRestaurant.getName() + ")"));
             startActivity(mapIntent);
         }
+
+        if (v == mSaveRestaurantButton) {
+            DatabaseReference restaurantRef = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_RESTAURANTS);
+            restaurantRef.push().setValue(mRestaurant);
+            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 
 }

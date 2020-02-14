@@ -15,6 +15,13 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="16dp"
         android:visibility="gone" /><!--similar to listView with added features-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/savedRestaurants"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp" /><!--similar to listView with added features-->
 
     <ProgressBar
         android:id="@+id/progressBar"

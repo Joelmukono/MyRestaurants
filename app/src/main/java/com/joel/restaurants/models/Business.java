@@ -33,7 +33,7 @@ public class Business
     private Boolean isClosed;
     @SerializedName("categories")
     @Expose
-    private List<Category> categories = null;
+    private List<Category> categories = null; //changed from category to string types
     @SerializedName("review_count")
     @Expose
     private Integer reviewCount;
@@ -58,7 +58,7 @@ public class Business
     @SerializedName("transactions")
     @Expose
     private List<String> transactions = null;
-    private final static long serialVersionUID = 3940700427223907076L;
+//    private final static long serialVersionUID = 3940700427223907076L;
 
     /**
      * No args constructor for use in serialization
@@ -85,6 +85,8 @@ public class Business
      * @param id
      * @param categories
      */
+
+
     public Business(Double rating, String price, String phone, String id, String alias, Boolean isClosed, List<Category> categories, Integer reviewCount, String name, String url, Coordinates coordinates, String imageUrl, Location location, Double distance, List<String> transactions) {
         super();
         this.rating = rating;

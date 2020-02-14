@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.joel.restaurants.network.YelpApi;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import com.joel.restaurants.network.YelpBusinessesSearchResponse;
 import com.joel.restaurants.network.YelpClient;
 import com.joel.restaurants.adapters.MyRestaurantsArrayAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -37,8 +39,8 @@ import retrofit2.Response;
 
 public class RestaurantsActivity extends AppCompatActivity {
 
-    private SharedPreferences mSharedPreferences;
-    private String mRecentAddress;
+//    private SharedPreferences mSharedPreferences;
+//    private String mRecentAddress;
 
     private static final String TAG = RestaurantsActivity.class.getSimpleName();
 
@@ -52,6 +54,7 @@ public class RestaurantsActivity extends AppCompatActivity {
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView; //used to display info to ui
     private RestaurantListAdapter mAdapter;
     public List<Business> restaurants;
+    public ArrayList<Business> mRestaurants = new ArrayList<>();
 
     @BindView(R.id.errorTextView) TextView mErrorTextView;
     @BindView(R.id.progressBar) ProgressBar mProgressBar;
@@ -79,6 +82,8 @@ public class RestaurantsActivity extends AppCompatActivity {
         Intent intent = getIntent(); //recreates intent from main activity
         String location = intent.getStringExtra("location"); // pulls out "location" key value pair from put extra in mainactivity
 //        mLocationTextView.setText("Here are all the restaurants near: " + location);//setText updates mLocationTextView with content from location,location is added as argument
+
+
 
         YelpApi client = YelpClient.getClient();
 
@@ -112,11 +117,11 @@ public class RestaurantsActivity extends AppCompatActivity {
             }
         });
 
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY,null);
-        if (mRecentAddress !=null){
-            client.getRestaurants(mRecentAddress, "restaurants");
-        }
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY,null);
+//        if (mRecentAddress !=null){
+//            client.getRestaurants(mRecentAddress, "restaurants");
+//        }
     }
 
     private void showFailureMessage(){
